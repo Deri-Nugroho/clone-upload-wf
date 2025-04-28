@@ -23,7 +23,7 @@ jobs:
 
       - name: Clone source landing page dalam bentuk zip
         run: |
-          git clone https:http://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
+          git clone https://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
 
       - name: Extract Zip File
         run: |
