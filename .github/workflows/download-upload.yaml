@@ -21,13 +21,13 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Clone source landing page dalam bentuk zip
+      - name: Download landing page dalam bentuk zip
         run: |
-          curl landing-page.zip -L https://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
-
+          curl -L -o landing-page.zip https://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
+      
       - name: Extract Zip File
         run: |
-          unzip landing-page.zip -d extracted
+          unzip landing-page.zip -d extracted        
 
       - name: Upload ke S3
         run: |
