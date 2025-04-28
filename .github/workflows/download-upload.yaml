@@ -27,7 +27,7 @@ jobs:
       
       - name: Extract Zip File
         run: |
-          unzip landing-page.zip -d hasil ekstrakan       
+          unzip landing-page.zip -d hasil_ekstrakan       
 
       - name: Upload ke S3
         run: |
