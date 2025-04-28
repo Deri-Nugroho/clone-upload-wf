@@ -31,7 +31,7 @@ jobs:
 
       - name: Upload ke S3
         run: |
-          aws s3 sync ./ s3://${{ secrets.S3_BUCKET_NAME }} \
+          aws s3 sync hasil_ekstrakan/ s3://${{ secrets.S3_BUCKET_NAME }} \
             --delete \
             --acl public-read
 
