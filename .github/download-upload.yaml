@@ -1,0 +1,39 @@
+name: Deploy Website to S3
+
+on:
+  push:
+    branches:
+      - main  # sesuaikan dengan branch kamu
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Clone source landing page dalam bentuk zip
+        run: |
+          git clone https:http://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
+
+      - name: Extract Zip File
+        run: |
+          unzip startbootstrap-personal-main.zip -d extracted
+
+      - name: Upload ke S3
+        run: |
+          aws s3 sync ./ s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
+            --acl public-read
+
+# --delete = Hapus file di bucket yang sudah tidak ada di project
+# --acl public-read = mengatur ACLs file agar orang di internet bisa mengakses
