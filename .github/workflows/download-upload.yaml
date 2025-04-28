@@ -23,11 +23,11 @@ jobs:
 
       - name: Clone source landing page dalam bentuk zip
         run: |
-          git clone https://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
+          curl landing-page.zip -L https://github.com/startbootstrap/startbootstrap-personal/archive/gh-pages.zip
 
       - name: Extract Zip File
         run: |
-          unzip startbootstrap-personal-main.zip -d extracted
+          unzip landing-page.zip -d extracted
 
       - name: Upload ke S3
         run: |
